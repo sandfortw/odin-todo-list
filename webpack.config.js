@@ -14,17 +14,21 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   devtool: 'inline-source-map',
   devServer: {
-    watchFiles: ['src/index.html'],
+    watchFiles: ['src/index.html', 'src/style.css', 'src/index.js'],
     static: './dist',
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      title: 'To-do-list Inbox',
+      title: 'Development',
       inject:'head',
       scriptLoading: 'defer'
     })
