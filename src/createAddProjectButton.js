@@ -1,13 +1,7 @@
-import Icon from './plus-circle.svg';
 
 function createAddTaskButton(){
-  let p = document.createElement('p')
-  let plusGraphic = new Image()
-  plusGraphic.src = Icon
-
-
-  p.appendChild(plusGraphic)
-  let span = document.createElement('span')
+  let p = document.querySelector('#add-task-container')
+  let span = document.createElement('p')
   span.textContent = 'Add Task'
   p.appendChild(span)
   return p

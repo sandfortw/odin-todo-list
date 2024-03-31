@@ -39,5 +39,15 @@ nav h2 {
   border-radius: 4px;
 }
 
+#add-task-button > p {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#add-task-button > p > img{
+  stroke: #DC4C3E;
+  color: red;
+}
 
 
