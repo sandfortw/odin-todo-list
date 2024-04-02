@@ -53,16 +53,9 @@ displayProjects(projects)
 //Display Project Tasks
 let currentProject = project1
 
-{/* <div id="inbox-task-list">
-      <div class="inbox-task">
-        <input type="checkbox" name="" id="" class="check-button">
-        <p class="inbox-task-name">Task Name</p>
-        <p class="inbox-task-date"> Apr 1 2024</p>
-      </div>
-</div> */}
 
 function displayCurrentProjectTasks(taskList, currentProject){
-  alert("displaying tasks")
+  taskList.innerHTML = ""
   currentProject.tasks.forEach((task) => {
     const div = document.createElement('div')
     const input = document.createElement('input')
