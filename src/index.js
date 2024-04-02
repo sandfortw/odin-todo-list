@@ -14,6 +14,7 @@ const taskList = document.querySelector("#inbox-task-list");
 const addTaskSubmit = document.querySelector("#add-task-submit-button");
 const addProjectSubmit = document.querySelector("#add-project-submit-button");
 let navProjects = document.querySelectorAll(".project-name");
+const deleteTasksButton = document.querySelector("#delete-tasks")
 
 const projectDialogCloseButton = document.querySelector(
   "#project-dialog-close"
@@ -59,11 +60,22 @@ addTaskSubmit.addEventListener("click", (event) => {
   taskDialogBox.close();
 });
 
-//Edit Project Name
-
 //Update Task from form
 
-//Display task details
+//Delete checked tasks button
+
+deleteTasksButton.addEventListener("click", ()=>{
+  const inputs = taskList.querySelectorAll('input')
+  inputs.forEach((input) =>{
+    if(input.checked === true){
+      currentProject.removeTask(input.id)
+    }
+  })
+  displayCurrentProjectTasks(taskList, currentProject)
+})
+
+//Store User Data
+
 
 
 //Display Projects

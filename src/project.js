@@ -13,8 +13,9 @@ class Project {
     this.tasks.push(task);
   }
 
-  removeTask(task) {
-    _.remove(this.tasks, (t) => t.id == task.id);
+  removeTask(id) {
+    id = id.slice(4)
+    _.remove(this.tasks, (t) => t.id == id);
   }
 }
 
