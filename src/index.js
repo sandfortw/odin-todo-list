@@ -8,6 +8,7 @@ const addTaskContainer = document.querySelector("#add-task-button");
 const addProjectContainer = document.querySelector("#add-project-container");
 const projectDialogBox = document.querySelector("#add-project-dialog-box");
 const navProjects = document.querySelector("#nav-projects-list");
+const taskList = document.querySelector("#inbox-task-list")
 
 const projectDialogCloseButton = document.querySelector(
   "#project-dialog-close"
@@ -50,6 +51,40 @@ function displayProjects(projects) {
 displayProjects(projects)
 
 //Display Project Tasks
+let currentProject = project1
+
+{/* <div id="inbox-task-list">
+      <div class="inbox-task">
+        <input type="checkbox" name="" id="" class="check-button">
+        <p class="inbox-task-name">Task Name</p>
+        <p class="inbox-task-date"> Apr 1 2024</p>
+      </div>
+</div> */}
+
+function displayCurrentProjectTasks(taskList, currentProject){
+  alert("displaying tasks")
+  currentProject.tasks.forEach((task) => {
+    const div = document.createElement('div')
+    const input = document.createElement('input')
+    const name = document.createElement('p')
+    const date = document.createElement('p')
+    div.className = "inbox-task"
+    input.type = 'checkbox'
+    input.name = task.name
+    input.id = `task${task.id}`
+    input.className = "check-button"
+    div.appendChild(input)
+    name.className="inbox-task-name"
+    name.textContent = task.name
+    div.appendChild(name)
+    date.className = "inbox-task-date"
+    date.textContent = task.formattedDate
+    div.appendChild(date)
+    taskList.appendChild(div)
+  })
+}
+
+displayCurrentProjectTasks(taskList, project1)
 
 addTaskContainer.addEventListener("click", () => {
   taskDialogBox.showModal();
