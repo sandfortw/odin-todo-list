@@ -130,11 +130,6 @@ function addSelectProjectListener() {
   navProjects.forEach((project) => {
     project.addEventListener("click", () => {
       currentProject = _.find(projects, (p) => p.id == project.id);
-      alert(
-        `Current project is ${currentProject.name}. Project last task = ${
-          currentProject.tasks[currentProject.tasks.length - 1].name
-        }`
-      );
       displayCurrentProjectTasks(taskList, currentProject);
     });
   });
