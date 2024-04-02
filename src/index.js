@@ -105,6 +105,10 @@ function displayCurrentProjectTasks(taskList, currentProject) {
     date.className = "inbox-task-date";
     date.textContent = task.formattedDate;
     div.appendChild(date);
+    const editButton = document.createElement("span")
+    editButton.className = "material-symbols-outlined"
+    editButton.textContent = "Edit"
+    div.appendChild(editButton)
     div.addEventListener("click", () => {
       const dialog = document.querySelector("#see-task-details");
       dialog.innerHTML = "";

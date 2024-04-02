@@ -60,3 +60,16 @@ nav h2 {
   margin-left: 10vw;
   margin-top: 10vh;
 }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.inbox-task{
+  display: flex;
+  align-items: center;
+}
