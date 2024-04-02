@@ -4,7 +4,7 @@ class Project {
   static idCounter = 1;
 
   constructor(name) {
-    this.id = idCounter++;
+    this.id = Project.idCounter++;
     this.name = name;
     this.tasks = [];
   }
