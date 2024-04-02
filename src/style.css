@@ -34,12 +34,12 @@ nav h2 {
   transition: background-color .2s;
 }
 
-.nav-project-name:hover, #add-task-button:hover{
+.nav-project-name:hover, #add-task-button:hover, #add-project-container:hover{
   background-color: rgb(242, 242, 242);
   border-radius: 4px;
 }
 
-#add-task-button > p {
+#add-task-button > p, #add-project-container {
   display: flex;
   align-items: center;
   gap: 1rem;
