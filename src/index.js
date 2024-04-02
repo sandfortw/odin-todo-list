@@ -109,7 +109,11 @@ function displayCurrentProjectTasks(taskList, currentProject) {
     editButton.className = "material-symbols-outlined"
     editButton.textContent = "Edit"
     div.appendChild(editButton)
-    div.addEventListener("click", () => {
+
+    const detailsButton = document.createElement("span")
+    detailsButton.className = "material-symbols-outlined"
+    detailsButton.textContent = 'page_info'
+    detailsButton.addEventListener("click", () => {
       const dialog = document.querySelector("#see-task-details");
       dialog.innerHTML = "";
       const nameString = `Name: ${task.name}`;
@@ -131,6 +135,7 @@ function displayCurrentProjectTasks(taskList, currentProject) {
       dialog.appendChild(button);
       dialog.showModal();
     });
+    div.appendChild(detailsButton)
     taskList.appendChild(div);
   });
 }
@@ -166,7 +171,6 @@ function addSelectProjectListener() {
 
 /*TODO:
 Add validation
-Clicking checkbox should not display details
 Update Task from form
 Add localstorage
 Update date function to project suggestion
