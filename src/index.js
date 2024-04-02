@@ -129,45 +129,30 @@ function displayCurrentProjectTasks(taskList, currentProject) {
         input.name = `task-${prop}`;
         input.id = `edit-task-${prop}`;
         input.value = task[prop];
-        input.min = (prop === "priority") ? 1 : "";
-        input.max = (prop === "priority") ? 5 : "";
-        input.step = (prop === "priority") ? 1 : "";
+        input.min = prop === "priority" ? 1 : "";
+        input.max = prop === "priority" ? 5 : "";
+        input.step = prop === "priority" ? 1 : "";
         form.appendChild(label);
         form.appendChild(input);
       });
-      
+
       const submitButton = document.createElement("input");
       submitButton.type = "submit";
       submitButton.value = "Update Task";
       submitButton.id = "edit-task-submit-button";
       form.appendChild(submitButton);
-
-      // addTaskSubmit.addEventListener("click", (event) => {
-      //   event.preventDefault();
-      //   let form = document.querySelector("#add-task-form");
-      //   let inputs = form.querySelectorAll("input");
-      //   let task = createTask({
-      //     name: inputs[0].value,
-      //     description: inputs[1].value,
-      //     dueDate: new Date(inputs[2].value),
-      //     priority: inputs[3].value,
-      //   });
-      //   currentProject.addTask(task);
-      //   displayCurrentProjectTasks(taskList, currentProject);
-      //   taskDialogBox.close();
-      // });
-      submitButton.addEventListener("click", (event)=>{
-        event.preventDefault()
-        let inputs = form.querySelectorAll("input")
-        task.name = inputs[0].value
-        task.description = inputs[1].value
-        task.dueDate = new Date(inputs[2].value)
-        task.priority = inputs[3].value
-        displayCurrentProjectTasks(taskList, currentProject)
-        editTaskContainer.close()
-      })
-      editTaskContainer.appendChild(form)
-      editTaskContainer.showModal()
+      submitButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        let inputs = form.querySelectorAll("input");
+        task.name = inputs[0].value;
+        task.description = inputs[1].value;
+        task.dueDate = new Date(inputs[2].value);
+        task.priority = inputs[3].value;
+        displayCurrentProjectTasks(taskList, currentProject);
+        editTaskContainer.close();
+      });
+      editTaskContainer.appendChild(form);
+      editTaskContainer.showModal();
     });
     div.appendChild(editButton);
 
@@ -232,7 +217,7 @@ function addSelectProjectListener() {
 
 /*TODO:
 Add validation
-Update Task from form
+Fix date bug updating task
 Add localstorage
 Update date function to project suggestion
 */
