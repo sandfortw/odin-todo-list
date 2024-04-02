@@ -65,6 +65,7 @@ addTaskSubmit.addEventListener("click", (event) => {
 
 //Display task details
 
+
 //Display Projects
 function displayProjects(projects) {
   navProjectsList.innerHTML = "";
@@ -102,6 +103,28 @@ function displayCurrentProjectTasks(taskList, currentProject) {
     date.className = "inbox-task-date";
     date.textContent = task.formattedDate;
     div.appendChild(date);
+    div.addEventListener("click", ()=>{
+      const dialog = document.querySelector("#see-task-details")
+      dialog.innerHTML = ""
+      const nameString = `Name: ${task.name}`
+      const descriptionString = `Description: ${task.description}`
+      const dateString = `Date: ${task.formattedDate}`
+      const priorityString = `Priority: ${task.priority}`
+      const array = [nameString, descriptionString, dateString, priorityString]
+      for (let index = 0; index < array.length; index++) {
+        const p = document.createElement('p')
+        p.textContent = array[index]
+        dialog.appendChild(p)
+      }
+      const button = document.createElement("button")
+      button.id = 'task-details-dialog-close'
+      button.textContent = 'Close Window'
+      button.addEventListener("click", () => {
+        document.querySelector("#see-task-details").close();
+      });
+      dialog.appendChild(button)
+      dialog.showModal()
+    })
     taskList.appendChild(div);
   });
 }
@@ -123,6 +146,12 @@ addProjectContainer.addEventListener("click", () => {
 projectDialogCloseButton.addEventListener("click", () => {
   projectDialogBox.close();
 });
+
+// const taskDetailsDialogCloseButton = document.querySelector('#task-details-dialog-close')
+
+// taskDetailsDialogCloseButton.addEventListener("click", () => {
+//   document.querySelector("#see-task-details").close();
+// });
 
 //Select Current Project
 function addSelectProjectListener() {
