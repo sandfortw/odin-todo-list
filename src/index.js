@@ -1,6 +1,6 @@
 import _ from "lodash";
 import "./style.css";
-import Task from "./task";
+import createTask from "./createTask";
 import createProject from "./createProject";
 import addProjectToProjects from "./addProjectToProjects";
 const projects = [];
@@ -24,10 +24,6 @@ const projectDialogCloseButton = document.querySelector(
 let project1 = createProject("Testproject");
 addProjectToProjects(projects, project1);
 
-// Create a new task
-function createTask({ name, description, dueDate, priority }) {
-  return new Task({ name, description, dueDate, priority });
-}
 let task1 = createTask({
   name: "Do dishes",
   description: "do them",
