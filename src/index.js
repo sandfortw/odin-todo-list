@@ -1,7 +1,8 @@
 import _ from "lodash";
 import "./style.css";
-import Project from "./project";
 import Task from "./task";
+import createProject from "./createProject";
+import addProjectToProjects from "./addProjectToProjects";
 const projects = [];
 const taskDialogBox = document.querySelector("#add-task-dialog-box");
 const taskDialogCloseButton = document.querySelector("#task-dialog-close");
@@ -20,14 +21,6 @@ const projectDialogCloseButton = document.querySelector(
 );
 
 
-// Create a new project
-function createProject(name) {
-  return new Project(name);
-}
-
-function addProjectToProjects(arry, project) {
-  arry.push(project);
-}
 let project1 = createProject("Testproject");
 addProjectToProjects(projects, project1);
 
@@ -133,6 +126,8 @@ function addSelectProjectListener(){
   navProjects.forEach((project) =>{
     project.addEventListener("click", ()=>{
       currentProject = _.find(projects, (p)=> p.id == project.id)
+      alert(`Current project is ${currentProject.name}. Project last task = ${currentProject.tasks[currentProject.tasks.length - 1].name}`)
+      displayCurrentProjectTasks(taskList, currentProject)
     })
   })
 }
