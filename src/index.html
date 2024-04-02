@@ -37,13 +37,33 @@
   </div>
 
   <dialog id="add-task-dialog-box">
-    <p> This is the task dialog box </p>
+    <p> New Task </p>
+    <form action="" method="">
+      <label for="task-name">Name:</label>
+      <input type="text" name="task-name" id="task-name">
+      <label for="task-description">Description:</label>
+      <input type="text" name="task-description" id="task-description">
+      <label for="task-due-date">Due date:</label>
+      <input type="date" name="task-due-date" id="task-due-date">
+      <label for="task-name">Priority Number (1-5):</label>
+      <input type="number" name="task-priority" id="task-priority" min="1" max="5" step="1" value="1">
+      <input type="submit" value="Create Task">
+    </form>
     <button id="task-dialog-close">Close Window</button>
   </dialog>
 
   <dialog id="add-project-dialog-box">
-    <p> This is the project dialog box </p>
+    <p> New Project </p>
+    <form action="" method="">
+      <label for="project-name">Name:</label>
+      <input type="text" name="project-name" id="project-name">
+      <input type="submit" value="Create Project">
+    </form>
     <button id="project-dialog-close">Close Window</button>
+  </dialog>
+
+  <dialog id="see-task-details">
+    
   </dialog>
 </body>
 </html>
