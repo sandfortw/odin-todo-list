@@ -50,4 +50,13 @@ nav h2 {
   color: red;
 }
 
+.inbox-task{
+  display: flex;
+  justify-content: left;
+  gap: 2rem;
+}
 
+#inbox-content{
+  margin-left: 10vw;
+  margin-top: 10vh;
+}
