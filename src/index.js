@@ -32,7 +32,8 @@ let task1 = createTask({
 project1.addTask(task1);
 
 //Create Project from form
-addProjectSubmit.addEventListener("click", (event) => {
+const addProjectForm = document.querySelector("#add-project-dialog-box-form")
+addProjectForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const projectName = document.querySelector("#project-name").value;
   const project = createProject(projectName);
@@ -42,9 +43,10 @@ addProjectSubmit.addEventListener("click", (event) => {
 });
 
 //Create Task from form
-addTaskSubmit.addEventListener("click", (event) => {
+const taskForm = document.querySelector("#add-task-form")
+taskForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  let form = document.querySelector("#add-task-form");
+  let form = taskForm;
   let inputs = form.querySelectorAll("input");
   let task = createTask({
     name: inputs[0].value,
@@ -128,6 +130,7 @@ function displayCurrentProjectTasks(taskList, currentProject) {
           prop === "dueDate" ? "date" : prop === "priority" ? "number" : "text";
         input.name = `task-${prop}`;
         input.id = `edit-task-${prop}`;
+        input.required = true;
         input.value = task[prop];
         input.min = prop === "priority" ? 1 : "";
         input.max = prop === "priority" ? 5 : "";
@@ -141,7 +144,7 @@ function displayCurrentProjectTasks(taskList, currentProject) {
       submitButton.value = "Update Task";
       submitButton.id = "edit-task-submit-button";
       form.appendChild(submitButton);
-      submitButton.addEventListener("click", (event) => {
+      form.addEventListener("submit", (event) => {
         event.preventDefault();
         let inputs = form.querySelectorAll("input");
         task.name = inputs[0].value;
@@ -216,8 +219,9 @@ function addSelectProjectListener() {
 }
 
 /*TODO:
-Add validation
 Fix date bug updating task
+Fix second date error where date does not start prefilled when updating. 
 Add localstorage
 Update date function to project suggestion
+Refactor for way better readability 
 */

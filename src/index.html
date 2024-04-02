@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inbox</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+
 <body>
   <nav>
     <div id="user-info"></div>
     <div id="add-task-button">
       <p id="add-task-container">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-plus-circle">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
         <span>Add Task</span>
       </p>
     </div>
     <h2>My Projects</h2>
     <p id="add-project-container">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        class="feather feather-plus-circle">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="16"></line>
+        <line x1="8" y1="12" x2="16" y2="12"></line>
+      </svg>
       <span>Add Project</span>
     </p>
     <div id="nav-projects-list">
@@ -28,13 +43,7 @@
 
   <div id="inbox-content">
     <h1>Inbox</h1>
-    <div id="inbox-task-list">
-      <!-- <div class="inbox-task">
-        <input type="checkbox" name="" id="" class="check-button">
-        <p class="inbox-task-name">Task Name</p>
-        <p class="inbox-task-date"> Apr 1 2024</p>
-      </div> -->
-    </div>
+    <div id="inbox-task-list"></div>
     <button id="delete-tasks">Delete Checked Tasks</button>
   </div>
 
@@ -42,13 +51,13 @@
     <p> New Task </p>
     <form id="add-task-form">
       <label for="task-name">Name:</label>
-      <input type="text" name="task-name" id="task-name">
+      <input type="text" name="task-name" id="task-name" required>
       <label for="task-description">Description:</label>
-      <input type="text" name="task-description" id="task-description">
+      <input type="text" name="task-description" id="task-description" required>
       <label for="task-due-date">Due date:</label>
-      <input type="date" name="task-due-date" id="task-due-date">
+      <input type="date" name="task-due-date" id="task-due-date" required>
       <label for="task-name">Priority Number (1-5):</label>
-      <input type="number" name="task-priority" id="task-priority" min="1" max="5" step="1" value="1">
+      <input type="number" name="task-priority" id="task-priority" min="1" max="5" step="1" value="1" required>
       <input id="add-task-submit-button" type="submit" value="Create Task">
     </form>
     <button id="task-dialog-close">Close Window</button>
@@ -56,9 +65,9 @@
 
   <dialog id="add-project-dialog-box">
     <p> New Project </p>
-    <form id="add-project-dialog-box-form" >
+    <form id="add-project-dialog-box-form">
       <label for="project-name">Name:</label>
-      <input type="text" name="project-name" id="project-name">
+      <input type="text" name="project-name" id="project-name" required>
       <input id="add-project-submit-button" type="submit" value="Create Project">
     </form>
     <button id="project-dialog-close">Close Window</button>
@@ -67,7 +76,8 @@
   <dialog id="see-task-details"></dialog>
 
   <dialog id="edit-task-form-container">
-    
+
   </dialog>
 </body>
+
 </html>
