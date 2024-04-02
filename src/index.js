@@ -105,14 +105,75 @@ function displayCurrentProjectTasks(taskList, currentProject) {
     date.className = "inbox-task-date";
     date.textContent = task.formattedDate;
     div.appendChild(date);
-    const editButton = document.createElement("span")
-    editButton.className = "material-symbols-outlined"
-    editButton.textContent = "Edit"
-    div.appendChild(editButton)
+    const editButton = document.createElement("span");
+    editButton.className = "material-symbols-outlined";
+    editButton.textContent = "Edit";
 
-    const detailsButton = document.createElement("span")
-    detailsButton.className = "material-symbols-outlined"
-    detailsButton.textContent = 'page_info'
+    const editTaskContainer = document.querySelector(
+      "#edit-task-form-container"
+    );
+
+    editButton.addEventListener("click", () => {
+      editTaskContainer.innerHTML = "";
+      const form = document.createElement("form");
+      form.id = "edit-task-form";
+
+      ["name", "description", "dueDate", "priority"].forEach((prop) => {
+        const label = document.createElement("label");
+        label.setAttribute("for", `edit-task-${prop}`);
+        label.textContent = prop.charAt(0).toUpperCase() + prop.slice(1) + ":";
+
+        const input = document.createElement("input");
+        input.type =
+          prop === "dueDate" ? "date" : prop === "priority" ? "number" : "text";
+        input.name = `task-${prop}`;
+        input.id = `edit-task-${prop}`;
+        input.value = task[prop];
+        input.min = (prop === "priority") ? 1 : "";
+        input.max = (prop === "priority") ? 5 : "";
+        input.step = (prop === "priority") ? 1 : "";
+        form.appendChild(label);
+        form.appendChild(input);
+      });
+      
+      const submitButton = document.createElement("input");
+      submitButton.type = "submit";
+      submitButton.value = "Update Task";
+      submitButton.id = "edit-task-submit-button";
+      form.appendChild(submitButton);
+
+      // addTaskSubmit.addEventListener("click", (event) => {
+      //   event.preventDefault();
+      //   let form = document.querySelector("#add-task-form");
+      //   let inputs = form.querySelectorAll("input");
+      //   let task = createTask({
+      //     name: inputs[0].value,
+      //     description: inputs[1].value,
+      //     dueDate: new Date(inputs[2].value),
+      //     priority: inputs[3].value,
+      //   });
+      //   currentProject.addTask(task);
+      //   displayCurrentProjectTasks(taskList, currentProject);
+      //   taskDialogBox.close();
+      // });
+      submitButton.addEventListener("click", (event)=>{
+        event.preventDefault()
+        let inputs = form.querySelectorAll("input")
+        task.name = inputs[0].value
+        task.description = inputs[1].value
+        task.dueDate = new Date(inputs[2].value)
+        task.priority = inputs[3].value
+        displayCurrentProjectTasks(taskList, currentProject)
+        editTaskContainer.close()
+      })
+      editTaskContainer.appendChild(form)
+      editTaskContainer.showModal()
+    });
+    div.appendChild(editButton);
+
+    const detailsButton = document.createElement("span");
+    detailsButton.className = "material-symbols-outlined";
+    detailsButton.textContent = "page_info";
     detailsButton.addEventListener("click", () => {
       const dialog = document.querySelector("#see-task-details");
       dialog.innerHTML = "";
@@ -135,7 +196,7 @@ function displayCurrentProjectTasks(taskList, currentProject) {
       dialog.appendChild(button);
       dialog.showModal();
     });
-    div.appendChild(detailsButton)
+    div.appendChild(detailsButton);
     taskList.appendChild(div);
   });
 }
