@@ -14,7 +14,7 @@ const taskList = document.querySelector("#inbox-task-list");
 const addTaskSubmit = document.querySelector("#add-task-submit-button");
 const addProjectSubmit = document.querySelector("#add-project-submit-button");
 let navProjects = document.querySelectorAll(".project-name");
-const deleteTasksButton = document.querySelector("#delete-tasks")
+const deleteTasksButton = document.querySelector("#delete-tasks");
 
 const projectDialogCloseButton = document.querySelector(
   "#project-dialog-close"
@@ -32,8 +32,6 @@ let task1 = createTask({
 project1.addTask(task1);
 
 //Create Project from form
-
-//TODO: Add validation
 addProjectSubmit.addEventListener("click", (event) => {
   event.preventDefault();
   const projectName = document.querySelector("#project-name").value;
@@ -48,35 +46,27 @@ addTaskSubmit.addEventListener("click", (event) => {
   event.preventDefault();
   let form = document.querySelector("#add-task-form");
   let inputs = form.querySelectorAll("input");
-  // { name, description, dueDate, priority }
   let task = createTask({
     name: inputs[0].value,
     description: inputs[1].value,
     dueDate: new Date(inputs[2].value),
     priority: inputs[3].value,
   });
-  currentProject.addTask(task)
+  currentProject.addTask(task);
   displayCurrentProjectTasks(taskList, currentProject);
   taskDialogBox.close();
 });
 
-//Update Task from form
-
 //Delete checked tasks button
-
-deleteTasksButton.addEventListener("click", ()=>{
-  const inputs = taskList.querySelectorAll('input')
-  inputs.forEach((input) =>{
-    if(input.checked === true){
-      currentProject.removeTask(input.id)
+deleteTasksButton.addEventListener("click", () => {
+  const inputs = taskList.querySelectorAll("input");
+  inputs.forEach((input) => {
+    if (input.checked === true) {
+      currentProject.removeTask(input.id);
     }
-  })
-  displayCurrentProjectTasks(taskList, currentProject)
-})
-
-//Store User Data
-
-
+  });
+  displayCurrentProjectTasks(taskList, currentProject);
+});
 
 //Display Projects
 function displayProjects(projects) {
@@ -115,28 +105,28 @@ function displayCurrentProjectTasks(taskList, currentProject) {
     date.className = "inbox-task-date";
     date.textContent = task.formattedDate;
     div.appendChild(date);
-    div.addEventListener("click", ()=>{
-      const dialog = document.querySelector("#see-task-details")
-      dialog.innerHTML = ""
-      const nameString = `Name: ${task.name}`
-      const descriptionString = `Description: ${task.description}`
-      const dateString = `Date: ${task.formattedDate}`
-      const priorityString = `Priority: ${task.priority}`
-      const array = [nameString, descriptionString, dateString, priorityString]
+    div.addEventListener("click", () => {
+      const dialog = document.querySelector("#see-task-details");
+      dialog.innerHTML = "";
+      const nameString = `Name: ${task.name}`;
+      const descriptionString = `Description: ${task.description}`;
+      const dateString = `Date: ${task.formattedDate}`;
+      const priorityString = `Priority: ${task.priority}`;
+      const array = [nameString, descriptionString, dateString, priorityString];
       for (let index = 0; index < array.length; index++) {
-        const p = document.createElement('p')
-        p.textContent = array[index]
-        dialog.appendChild(p)
+        const p = document.createElement("p");
+        p.textContent = array[index];
+        dialog.appendChild(p);
       }
-      const button = document.createElement("button")
-      button.id = 'task-details-dialog-close'
-      button.textContent = 'Close Window'
+      const button = document.createElement("button");
+      button.id = "task-details-dialog-close";
+      button.textContent = "Close Window";
       button.addEventListener("click", () => {
         document.querySelector("#see-task-details").close();
       });
-      dialog.appendChild(button)
-      dialog.showModal()
-    })
+      dialog.appendChild(button);
+      dialog.showModal();
+    });
     taskList.appendChild(div);
   });
 }
@@ -159,12 +149,6 @@ projectDialogCloseButton.addEventListener("click", () => {
   projectDialogBox.close();
 });
 
-// const taskDetailsDialogCloseButton = document.querySelector('#task-details-dialog-close')
-
-// taskDetailsDialogCloseButton.addEventListener("click", () => {
-//   document.querySelector("#see-task-details").close();
-// });
-
 //Select Current Project
 function addSelectProjectListener() {
   navProjects = document.querySelectorAll(".project-name");
@@ -175,3 +159,11 @@ function addSelectProjectListener() {
     });
   });
 }
+
+/*TODO:
+Add validation
+Clicking checkbox should not display details
+Update Task from form
+Add localstorage
+Update date function to project suggestion
+*/
