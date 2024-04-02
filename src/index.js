@@ -9,10 +9,14 @@ const addProjectContainer = document.querySelector("#add-project-container");
 const projectDialogBox = document.querySelector("#add-project-dialog-box");
 const navProjects = document.querySelector("#nav-projects-list");
 const taskList = document.querySelector("#inbox-task-list")
+const addTaskSubmit = document.querySelector('#add-task-submit-button')
+const addProjectSubmit = document.querySelector('#add-project-submit-button')
+
 
 const projectDialogCloseButton = document.querySelector(
   "#project-dialog-close"
 );
+
 
 // Create a new project
 function createProject(name) {
@@ -36,6 +40,24 @@ let task1 = createTask({
   priority: 1,
 });
 project1.addTask(task1);
+
+
+//Create Project from form
+addProjectSubmit.addEventListener('click', ((event)=>{
+  event.preventDefault()
+  const projectName = document.querySelector("#project-name").value
+  const project = createProject(projectName)
+  addProjectToProjects(projects, project);
+  displayProjects(projects)
+}))
+
+//Create Task from form
+
+//Edit Project Name
+
+//Update Task from form
+
+//Display task details
 
 //Display Projects
 function displayProjects(projects) {
