@@ -1,3 +1,4 @@
+import _ from "lodash";
 import "./style.css";
 import Project from "./project";
 import Task from "./task";
@@ -7,10 +8,11 @@ const taskDialogCloseButton = document.querySelector("#task-dialog-close");
 const addTaskContainer = document.querySelector("#add-task-button");
 const addProjectContainer = document.querySelector("#add-project-container");
 const projectDialogBox = document.querySelector("#add-project-dialog-box");
-const navProjects = document.querySelector("#nav-projects-list");
+const navProjectsList = document.querySelector("#nav-projects-list");
 const taskList = document.querySelector("#inbox-task-list")
 const addTaskSubmit = document.querySelector('#add-task-submit-button')
 const addProjectSubmit = document.querySelector('#add-project-submit-button')
+let navProjects = document.querySelectorAll(".project-name")
 
 
 const projectDialogCloseButton = document.querySelector(
@@ -43,15 +45,19 @@ project1.addTask(task1);
 
 
 //Create Project from form
+
+//TODO: Add validation
 addProjectSubmit.addEventListener('click', ((event)=>{
   event.preventDefault()
   const projectName = document.querySelector("#project-name").value
   const project = createProject(projectName)
   addProjectToProjects(projects, project);
   displayProjects(projects)
+  projectDialogBox.close();
 }))
 
 //Create Task from form
+
 
 //Edit Project Name
 
@@ -61,13 +67,16 @@ addProjectSubmit.addEventListener('click', ((event)=>{
 
 //Display Projects
 function displayProjects(projects) {
-  navProjects.innerHTML = ""
+  navProjectsList.innerHTML = ""
   projects.forEach((project) => {
     const div = document.createElement('div')
     div.className = "project-name"
+    div.id = project.id
     div.textContent = project.name
-    navProjects.appendChild(div)
-  });
+    navProjectsList.appendChild(div)
+  })
+  addSelectProjectListener()
+  ;
 }
 
 displayProjects(projects)
@@ -116,3 +125,14 @@ addProjectContainer.addEventListener("click", () => {
 projectDialogCloseButton.addEventListener("click", () => {
   projectDialogBox.close();
 });
+
+
+//Select Current Project
+function addSelectProjectListener(){
+  navProjects = document.querySelectorAll(".project-name")
+  navProjects.forEach((project) =>{
+    project.addEventListener("click", ()=>{
+      currentProject = _.find(projects, (p)=> p.id == project.id)
+    })
+  })
+}
