@@ -1,9 +1,12 @@
+import Project from "./project"
 import _ from "lodash";
 import "./style.css";
 import createTask from "./createTask";
 import createProject from "./createProject";
 import addProjectToProjects from "./addProjectToProjects";
-const projects = [];
+const projects = localStorage["projects"] ? JSON.parse(localStorage["projects"]) : [new Project("My to-do List")];
+let currentProject = projects[0] 
+
 const taskDialogBox = document.querySelector("#add-task-dialog-box");
 const taskDialogCloseButton = document.querySelector("#task-dialog-close");
 const addTaskContainer = document.querySelector("#add-task-button");
@@ -11,25 +14,12 @@ const addProjectContainer = document.querySelector("#add-project-container");
 const projectDialogBox = document.querySelector("#add-project-dialog-box");
 const navProjectsList = document.querySelector("#nav-projects-list");
 const taskList = document.querySelector("#inbox-task-list");
-const addTaskSubmit = document.querySelector("#add-task-submit-button");
-const addProjectSubmit = document.querySelector("#add-project-submit-button");
 let navProjects = document.querySelectorAll(".project-name");
 const deleteTasksButton = document.querySelector("#delete-tasks");
 
 const projectDialogCloseButton = document.querySelector(
   "#project-dialog-close"
 );
-
-let project1 = createProject("Testproject");
-addProjectToProjects(projects, project1);
-
-let task1 = createTask({
-  name: "Do dishes",
-  description: "do them",
-  dueDate: new Date(),
-  priority: 1,
-});
-project1.addTask(task1);
 
 //Create Project from form
 const addProjectForm = document.querySelector("#add-project-dialog-box-form")
@@ -55,6 +45,7 @@ taskForm.addEventListener("submit", (event) => {
     priority: inputs[3].value,
   });
   currentProject.addTask(task);
+  localStorage.setItem('projects', JSON.stringify(projects))
   displayCurrentProjectTasks(taskList, currentProject);
   taskDialogBox.close();
 });
@@ -65,6 +56,7 @@ deleteTasksButton.addEventListener("click", () => {
   inputs.forEach((input) => {
     if (input.checked === true) {
       currentProject.removeTask(input.id);
+      localStorage.setItem('projects', JSON.stringify(projects))
     }
   });
   displayCurrentProjectTasks(taskList, currentProject);
@@ -86,7 +78,6 @@ function displayProjects(projects) {
 displayProjects(projects);
 
 //Display Project Tasks
-let currentProject = project1;
 
 function displayCurrentProjectTasks(taskList, currentProject) {
   taskList.innerHTML = "";
@@ -151,6 +142,7 @@ function displayCurrentProjectTasks(taskList, currentProject) {
         task.description = inputs[1].value;
         task.dueDate = new Date(inputs[2].value);
         task.priority = inputs[3].value;
+        localStorage.setItem('projects', JSON.stringify(projects))
         displayCurrentProjectTasks(taskList, currentProject);
         editTaskContainer.close();
       });
@@ -189,8 +181,6 @@ function displayCurrentProjectTasks(taskList, currentProject) {
   });
 }
 
-displayCurrentProjectTasks(taskList, project1);
-
 addTaskContainer.addEventListener("click", () => {
   taskDialogBox.showModal();
 });
@@ -225,3 +215,4 @@ Add localstorage
 Update date function to project suggestion
 Refactor for way better readability 
 */
+displayCurrentProjectTasks(taskList, currentProject)
