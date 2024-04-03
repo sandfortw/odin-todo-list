@@ -3,7 +3,7 @@ import "./style.css";
 import createTask from "./createTask";
 import createProject from "./createProject";
 import addProjectToProjects from "./addProjectToProjects";
-const projects = localStorage["projects"] ? JSON.parse(localStorage["projects"]) : [createProject("My new project")];
+const projects = localStorage["projects"] ? retrieveProjects(localStorage["projects"]) : [createProject("My new project")];
 let currentProject = projects[0] 
 
 const taskDialogBox = document.querySelector("#add-task-dialog-box");
@@ -19,6 +19,23 @@ const deleteTasksButton = document.querySelector("#delete-tasks");
 const projectDialogCloseButton = document.querySelector(
   "#project-dialog-close"
 );
+
+
+function retrieveProjects(localStorage){
+  let parsed = JSON.parse(localStorage)
+  let newProjects = []
+  parsed.forEach((project) =>{
+    let newProject = createProject(project.name)
+    let tasks = project.tasks
+    for (let index = 0; index < tasks.length; index++) {
+      let task = tasks[index];
+      project.tasks[index] = createTask({name: task.name, description: task.description, dueDate: task.dueDate, priority: task.priority})
+    }
+    newProject.tasks = tasks
+    newProjects.push(newProject)
+  })
+  return newProjects
+}
 
 //Create Project from form
 const addProjectForm = document.querySelector("#add-project-dialog-box-form")
@@ -228,12 +245,9 @@ function clearForm(form) {
 
 
 /*TODO:
-Fix date bug updating task
 Fix second date error where date does not start prefilled when updating. 
-Update date function to project suggestion
 Refactor for way better readability 
 Convert to-do-list buttons to grid to line it up better
-Fix bug where functions get cleared on save in local storage
 */
 
 

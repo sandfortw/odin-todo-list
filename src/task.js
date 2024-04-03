@@ -10,8 +10,9 @@ class Task {
   }
 
   get formattedDate(){
+    const dueDate = typeof this.dueDate === "string" ? new Date(this.dueDate) : this.dueDate
     const options = { month: 'short', day: 'numeric', year: 'numeric' };
-    const formattedDate = this.dueDate.toLocaleDateString('en-US', options);
+    const formattedDate = dueDate.toLocaleDateString('en-US', options);
     return formattedDate
   }
 }
