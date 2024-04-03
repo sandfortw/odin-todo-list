@@ -1,3 +1,4 @@
+const { lightFormat } = require("date-fns")
 import _ from "lodash";
 import "./style.css";
 import createTask from "./createTask";
@@ -140,7 +141,7 @@ function displayCurrentProjectTasks(taskList, currentProject) {
         input.name = `task-${prop}`;
         input.id = `edit-task-${prop}`;
         input.required = true;
-        input.value = task[prop];
+        input.value = prop === "dueDate" ? lightFormat( new Date(task[prop]), "yyyy-MM-dd") : task[prop];
         input.min = prop === "priority" ? 1 : "";
         input.max = prop === "priority" ? 5 : "";
         input.step = prop === "priority" ? 1 : "";
@@ -245,7 +246,7 @@ function clearForm(form) {
 
 
 /*TODO:
-Fix second date error where date does not start prefilled when updating. 
+Fix bug where my date is a day earlier than what I selected
 Refactor for way better readability 
 Convert to-do-list buttons to grid to line it up better
 */
