@@ -211,8 +211,8 @@ function addSelectProjectListener() {
 /*TODO:
 Fix date bug updating task
 Fix second date error where date does not start prefilled when updating. 
-Add localstorage
 Update date function to project suggestion
 Refactor for way better readability 
+Add highlighting for projects
 */
 displayCurrentProjectTasks(taskList, currentProject)
