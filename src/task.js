@@ -1,3 +1,4 @@
+const { format } = require("date-fns")
 class Task {
   static idCounter = 1
 
@@ -11,9 +12,7 @@ class Task {
 
   get formattedDate(){
     const dueDate = typeof this.dueDate === "string" ? new Date(this.dueDate) : this.dueDate
-    const options = { month: 'short', day: 'numeric', year: 'numeric' };
-    const formattedDate = dueDate.toLocaleDateString('en-US', options);
-    return formattedDate
+    return format(dueDate, "MMM dd, yyyy")
   }
 }
 
