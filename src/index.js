@@ -1,10 +1,9 @@
-import Project from "./project"
 import _ from "lodash";
 import "./style.css";
 import createTask from "./createTask";
 import createProject from "./createProject";
 import addProjectToProjects from "./addProjectToProjects";
-const projects = localStorage["projects"] ? JSON.parse(localStorage["projects"]) : [new Project("My to-do List")];
+const projects = localStorage["projects"] ? JSON.parse(localStorage["projects"]) : [createProject("My new project")];
 let currentProject = projects[0] 
 
 const taskDialogBox = document.querySelector("#add-task-dialog-box");
@@ -29,6 +28,7 @@ addProjectForm.addEventListener("submit", (event) => {
   const project = createProject(projectName);
   addProjectToProjects(projects, project);
   displayProjects(projects);
+  clearForm(addProjectForm)
   projectDialogBox.close();
 });
 
@@ -47,6 +47,7 @@ taskForm.addEventListener("submit", (event) => {
   currentProject.addTask(task);
   localStorage.setItem('projects', JSON.stringify(projects))
   displayCurrentProjectTasks(taskList, currentProject);
+  clearForm(form)
   taskDialogBox.close();
 });
 
@@ -144,6 +145,7 @@ function displayCurrentProjectTasks(taskList, currentProject) {
         task.priority = inputs[3].value;
         localStorage.setItem('projects', JSON.stringify(projects))
         displayCurrentProjectTasks(taskList, currentProject);
+        clearForm(form)
         editTaskContainer.close();
       });
       editTaskContainer.appendChild(form);
@@ -187,6 +189,8 @@ addTaskContainer.addEventListener("click", () => {
 });
 
 taskDialogCloseButton.addEventListener("click", () => {
+  var form = document.getElementById("add-task-form");
+  clearForm(form)
   taskDialogBox.close();
 });
 
@@ -195,6 +199,8 @@ addProjectContainer.addEventListener("click", () => {
 });
 
 projectDialogCloseButton.addEventListener("click", () => {
+  var form = document.getElementById("add-project-dialog-box-form");
+  clearForm(form)
   projectDialogBox.close();
 });
 
@@ -209,11 +215,25 @@ function addSelectProjectListener() {
   });
 }
 
+
+function clearForm(form) {
+  var elements = form.elements;
+  for (var i = 0; i < elements.length; i++) {
+    var element = elements[i];
+    if (element.type !== "button" && element.type !== "submit" ) {
+      element.value = "";
+    }
+  }
+}
+
+
 /*TODO:
 Fix date bug updating task
 Fix second date error where date does not start prefilled when updating. 
 Update date function to project suggestion
 Refactor for way better readability 
+Convert to-do-list buttons to grid to line it up better
+Fix bug where functions get cleared on save in local storage
 */
 
 
