@@ -179,6 +179,7 @@ function displayCurrentProjectTasks(taskList, currentProject) {
     div.appendChild(detailsButton);
     taskList.appendChild(div);
   });
+  document.getElementById("inbox-title").textContent = `${currentProject.name} Inbox`;
 }
 
 addTaskContainer.addEventListener("click", () => {
@@ -213,6 +214,8 @@ Fix date bug updating task
 Fix second date error where date does not start prefilled when updating. 
 Update date function to project suggestion
 Refactor for way better readability 
-Add highlighting for projects
 */
+
+
+document.getElementById("inbox-title").textContent = `${currentProject.name} Inbox`;
 displayCurrentProjectTasks(taskList, currentProject)
