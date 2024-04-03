@@ -2,6 +2,7 @@
 My solution to The Odin Project's to-do list project. 
 
 Project Requirements: https://www.theodinproject.com/lessons/node-path-javascript-todo-list
+<br>
 Live Preview: https://sandfortw.github.io/odin-todo-list/
 
 This project was to get further practice with CRUD operations in javascript, as well as using localStorage to save user data. 
